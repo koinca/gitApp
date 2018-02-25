@@ -1,0 +1,9 @@
+Need to test the following scenarios:
+
+1. projects needs to be verified against REST call.
+2. verify sort functionality on projects view.
+3. verify filter on projects view, make sure the count display at the bottom page matches.
+4. click on project name which should take user to the commit page for the project.
+5. commit page should list all the commits.
+6. verify sort and filter on commits page.
+7. Back button '<' at the top of the page should take user back to the project list view.
