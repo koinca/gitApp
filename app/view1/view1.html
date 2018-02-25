@@ -1,0 +1,45 @@
+<div class='container'>   
+  <h4> List of all Neflix projects</h4>
+   <div class='row'>
+        <div class="bar">
+          <!-- Create a binding between the searchString model and the text field -->
+          <input type="text" ng-model="query" placeholder="Enter project to search" />
+        </div>
+        <div class='sort'>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" ng-click="sortHandler('name')">Name</a>
+                <a class="dropdown-item" ng-click="sortHandler('forks')">Forks</a>
+                <a class="dropdown-item" ng-click="sortHandler('watchers')">Watchers</a>
+                <a class="dropdown-item" ng-click="sortHandler('open_issues')">Open Issues</a>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class='row header text-center' >
+        <span class='col-md-6 text-left'>Project Name</span>
+        <span class='col-md-2'># Forks</span>
+        <span class='col-md-2'># Watches</span>
+        <span class='col-md-2'># Open Issues</span>
+    </div>
+
+    <ul id="project_ul">
+      <li  ng-repeat="project in projects | filter:query | orderBy: orderList track by $index" >
+        <div class='row'>
+            <span class='col-md-6'><a href="" title='Show me commits' ng-click="gotoCommits(project.name)">{{project.name}}</a></span>
+            <span class='col-md-2 text-right'>{{project.forks}}</span>
+            <span class='col-md-2 text-right'>{{project.watchers}}</span>
+            <span class='col-md-2 text-right'>{{project.open_issues}}</span>
+        </div>
+      </li>
+    </ul>
+
+    <span ng-if='query==""' class='col-md-3'>Total number of projects: {{projects.length}}</span>
+    <span ng-if='query!==""'' class='col-md-3'>{{(projects|filter:query).length}} of {{projects.length}} projects  </span>
+
+
+</div>

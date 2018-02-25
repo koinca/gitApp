@@ -1,0 +1,44 @@
+<div class='container'>
+   <h4> <a ng-href="/#!/view1">< </a> Commits for {{repoName}}</h4>
+   <div class='row'>
+        <div class="bar">
+          <!-- Create a binding between the searchString model and the text field -->
+          <input type="text" ng-model="query" placeholder="Enter commit to search" />
+        </div>
+        <div class='sort'>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" ng-click="sortHandler('login')">Login</a>
+                <a class="dropdown-item" ng-click="sortHandler('sha')">SHA</a>
+                <a class="dropdown-item" ng-click="sortHandler('commited')">Committed</a>
+                <a class="dropdown-item" ng-click="sortHandler('message')">Message</a>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class='row header2 text-left' >
+        <span class='col-md-2'>Login</span>
+        <span class='col-md-3'>SHA</span>
+        <span class='col-md-3' >Committed</span>
+        <span class='col-md-4'>Message</span>
+    </div>
+
+    <ul id="project_ul">
+      <li  ng-repeat="commit in commits | filter:query | orderBy: orderList track by $index" >
+        <div class='row'>
+            <span class='col-md-2'>{{commit.login}}</span>
+            <span class='col-md-3 ddd' title={{commit.sha}}>{{commit.sha}}</span>
+            <span class='col-md-3'>{{commit.commited| date:'short'}}</span>
+            <span class='col-md-4'>{{commit.message}}</span>
+        </div>
+      </li>
+    </ul>
+
+    <span ng-if='query==""' class='col-md-3'>Total number of commits: {{commits.length}}</span>
+    <span ng-if='query!==""'' class='col-md-3'>{{(commits|filter:query).length}} of {{commits.length}} commits  </span>
+
+
+</div>
